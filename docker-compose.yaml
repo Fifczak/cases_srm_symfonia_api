@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  crm_symfonia_api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    environment:
+      TZ: Europe/Warsaw
+      FLASK_DEBUG: "on"
+      FLASK_APP: ./app.py
+    env_file:
+      - .env
+    restart: always
+    ports:
+     - "5009:5009"
+
+    # volumes line used for hot code reloading
+    volumes: ['./api:/api']
